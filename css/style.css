@@ -1,0 +1,611 @@
+/* 引入需要的两款 Google 字体 */
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&family=Noto+Serif+SC:wght@400;900&display=swap');
+
+/* --- 细节1：侧边栏大标题 --- */
+.sidebar-name {
+    font-family: 'Gajraj One', cursive;
+    font-size: 36px; /* 36号字 */
+    letter-spacing: 0.04em; /* 4% 字距 */
+    font-weight: 400; /* Regular */
+    margin-top: 10px; /* 稍微拉开点距离 */
+    color: #000;
+}
+
+/* --- 细节2：视频板块简介排版 --- */
+.section-desc {
+    /* 覆盖之前的边距，避免上下挤在一起 */
+    margin-bottom: 24px; 
+}
+.role-title {
+    font-family: 'Noto Serif SC', serif; /* 思源宋体 */
+    font-weight: 900; /* heavy 黑体 */
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 6px; /* 和下面那句话换行，且有空隙 */
+}
+.role-desc {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 400; /* 浅色/常规 */
+    font-size: 16px;
+    color: #666; /* 浅灰色 */
+    line-height: 1.6;
+}
+
+/* --- 细节3：视频播放按钮 --- */
+.video-thumb {
+    position: relative; /* 必须加这行，作为定位父级 */
+    overflow: hidden; 
+    border-radius: 8px; /* 保持圆角 */
+}
+
+/* 白色半透明圆底 */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 绝对居中 */
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.85); /* 稍微半透明显得高级 */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* 防止遮挡底下的点击事件 */
+    transition: all 0.3s ease;
+}
+
+/* 利用 clip-path 画 29x29 的纯正三角形 */
+.play-triangle {
+    width: 29px;
+    height: 29px;
+    background-color: #333; /* 深灰色三角形 */
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    margin-left: 6px; /* 视觉居中的微调，因为三角形重心偏左 */
+}
+/* ============================================
+   LunaTang 个人网站 - 共用样式
+   纯CSS，无框架
+   ============================================ */
+
+/* ---------- 基础重置 ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                 sans-serif;
+    background-color: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ============================================
+   左侧固定侧边栏
+   ============================================ */
+.sidebar {
+    position: fixed;        /* 关键：固定不动 */
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100vh;          /* 占满整个视口高度 */
+    background: #F9F9F9;
+    border-right: 1px solid #E5E5E5;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 头像占位区域 */
+.sidebar-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #E8E8E8;
+    margin-bottom: 12px;
+    /* 之后把头像图片作为 background-image 放入 */
+    overflow: hidden;
+}
+
+.sidebar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    letter-spacing: 0.5px;
+}
+
+/* 导航链接 */
+.sidebar-nav a {
+    display: block;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    color: #555;
+    font-size: 15px;
+    transition: background 0.15s;
+}
+
+.sidebar-nav a:hover {
+    background: #EFEFEF;
+}
+
+/* 当前页面高亮：给对应页面的 body 加 class="page-index" 或 "page-notes" */
+.page-index .nav-index,
+.page-notes .nav-notes {
+    background: #E8E8E8;
+    color: #111;
+    font-weight: 600;
+}
+
+/* 侧边栏底部 GitHub 链接 */
+.sidebar-footer {
+    margin-top: auto;       /* 推到底部 */
+    font-size: 13px;
+    color: #999;
+}
+
+.sidebar-footer a {
+    color: #666;
+}
+
+.sidebar-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   右侧内容区
+   ============================================ */
+.main-content {
+    margin-left: 220px;     /* 给侧边栏留出空间 */
+    padding: 60px 80px;
+    max-width: 1100px;
+}
+
+/* ---------- 首页头部 ---------- */
+.hero {
+    margin-bottom: 80px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.hero-sub {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* 标签 */
+.tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tags li {
+    background: #EFEFEF;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* ---------- 通用板块 ---------- */
+.section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 800; /* 700 → 800，加粗更突出 */
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #E5E5E5;
+}
+
+.section-subtitle {
+    font-size: 18px; /* 17→18，拉开和正文差距 */
+    font-weight: 700; /* 600→700，更粗 */
+    margin-bottom: 12px;
+    color: #222; /* 444→222，颜色更深一点 */
+}
+
+.section-desc {
+    color: #555;
+    font-size: 15px; /* 14→15，读着舒服 */
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 720px;
+}
+
+/* ---------- 首页：视频项目卡片 ---------- */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 改成一行2个，匹配Figma */
+    gap: 20px;
+}
+
+.video-card {
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-thumb {
+    position: relative; /* 给播放图标做定位父容器，重点！ */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 保持16:9比例 */
+    background: #E8E8E8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #AAA;
+    font-size: 13px;
+}
+
+.video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 播放圆形图标 */
+.play-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px;
+    height: 52px;
+    background: rgba(0,0,0,0.55);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+.play-icon::after {
+    content: "▶";
+    margin-left: 3px;
+}
+
+.video-info {
+    padding: 12px 14px;
+}
+
+.video-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.video-info p {
+    font-size: 12px;
+    color: #888;
+}
+/* ---------- 首页：英语证书 ---------- */
+.timeline-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding-top: 20px;
+}
+
+/* 画那条贯穿 A2-B1-B2 的黑线 */
+.timeline-row::before {
+    content: '';
+    position: absolute;
+    top: 40px; /* 调整线的位置，刚好穿过圆点中心 */
+    left: 16.66%; /* 从第一个圆点的中心开始 */
+    right: 16.66%; /* 到最后一个圆点的中心结束 */
+    height: 2px;
+    background-color: #333;
+    z-index: 0;
+}
+
+/* 每一个节点（包含圆点、图片、文字） */
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* 黑色圆点 */
+.timeline-dot {
+    width: 40px;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 25px;
+    /* 添加一点边框防止线穿透圆点 */
+    box-shadow: 0 0 0 6px #F9F9F9; /* 你的背景色 */
+}
+
+/* 图片容器 */
+.timeline-img, .timeline-img-stack {
+    width: 100%;
+    max-width: 220px; /* 限制图片最大宽度，防止撑破 */
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+/* B2 的两张图需要垂直堆叠 */
+.timeline-img-stack {
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 图片本身样式 */
+.timeline-img img, .timeline-img-stack img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 加点高级的阴影 */
+    object-fit: contain;
+    background-color: #fff;
+}
+
+/* 图片下方的文字说明 */
+.timeline-item p {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+/* ---------- 首页：STM32 项目 ---------- */
+.stm32-project {
+    margin-bottom: 48px;
+}
+
+.stm32-project h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.code-block {
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.code-img {
+    width: 100%;
+    background: #E8E8E8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #AAA;
+    font-size: 13px;
+    min-height: 200px;
+}
+
+.code-img img {
+    width: 100%;
+    display: block;
+}
+
+.stm32-project p {
+    color: #666;
+    font-size: 14px;
+    max-width: 720px;
+}
+
+/* ---------- 学习笔记页 ---------- */
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.note-item {
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 20px 24px;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.note-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.note-date {
+    font-size: 13px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.note-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+    margin-left: 220px;
+    padding: 32px 80px;
+    border-top: 1px solid #E5E5E5;
+    font-size: 13px;
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-footer a {
+    color: #666;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   响应式：平板/手机
+   ============================================ */
+@media (max-width: 900px) {
+    .video-grid,
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;   /* 小屏幕改为顶部 */
+        border-right: none;
+        border-bottom: 1px solid #E5E5E5;
+        padding: 24px;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .sidebar-avatar {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0;
+    }
+
+    .sidebar-name {
+        margin-bottom: 0;
+        font-size: 17px;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .main-content,
+    .site-footer {
+        margin-left: 0;
+        padding: 32px 24px;
+    }
+
+    .video-grid,
+    .cert-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
+
+/* 英语时间线 */
+.timeline-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 24px;
+    position: relative;
+}
+/* 贯穿A2-B1-B2中间那条横线 */
+.timeline-row::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 36px;
+    right: 36px;
+    height: 2px;
+    background: #999;
+    z-index: -1;
+}
+.timeline-item {
+    flex: 1;
+    text-align: center;
+}
+.timeline-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-weight: bold;
+}
+.timeline-img img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+/* B2：垂直堆叠，上下放两张图！ */
+.timeline-img-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.timeline-img-stack img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.timeline-item p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+}
+                                   

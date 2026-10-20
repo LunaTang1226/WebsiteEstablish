@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunaTang - 学习笔记</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-notes">
+
+    <!-- ========== 左侧固定侧边栏（与首页共用） ========== -->
+    <aside class="sidebar">
+        <!-- 头像：把图片放到 images/avatar.jpg，然后取消下面 img 的注释 -->
+        <div class="sidebar-avatar">
+            <img src="images/avatar.jpg" alt="头像"> 
+        </div>
+
+        <div class="sidebar-name">LunaTang</div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-index">首页</a>
+            <a href="notes.html" class="nav-notes">学习笔记</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com/" target="_blank">GitHub</a>
+        </div>
+    </aside>
+
+    <!-- ========== 右侧内容区 ========== -->
+    <main class="main-content">
+
+        <h1 class="section-title" style="margin-bottom: 40px;">学习笔记</h1>
+
+        <div class="notes-list">
+
+            <!-- 笔记 1 -->
+            <article class="note-item">
+                <div class="note-header">
+                    <h2>01 《LED流水灯》</h2>
+                    <span class="note-date">2026.10.11</span>
+                </div>
+                <p>学习GPIO基础配置，学会设置引脚为输出模式，通过循环改变引脚高低电平，实现LED轮流点亮的流水效果。</p>
+            </article>
+
+            <!-- 笔记 2 -->
+            <article class="note-item">
+                <div class="note-header">
+                    <h2>02 《按键控制LED》</h2>
+                    <span class="note-date">2026.10.13</span>
+                </div>
+                <p>学习外部按键输入，理解按键抖动问题，添加软件消抖处理；按下按键切换LED亮灭。</p>
+            </article>
+
+            <!-- 笔记 3 -->
+            <article class="note-item">
+                <div class="note-header">
+                    <h2>03 《光敏传感器控制蜂鸣器》</h2>
+                    <span class="note-date">2026.10.14</span>
+                </div>
+                <p>读取光敏传感器的模拟值，判断环境光线强弱；设置阈值，光线达到条件时驱动蜂鸣器发声。</p>
+            </article>
+
+            <!-- 笔记 4 -->
+            <article class="note-item">
+                <div class="note-header">
+                    <h2>04 《Git &amp; Github 安装及使用》</h2>
+                    <span class="note-date">2026.09.29</span>
+                </div>
+                <p>学习并掌握了 Git 基础版本控制，能在本地创建仓库并进行代码的提交与修改。</p>
+            </article>
+
+            <!-- 笔记 5 -->
+            <article class="note-item">
+                <div class="note-header">
+                    <h2>05 《Figma 基础界面与图层》</h2>
+                    <span class="note-date">2026.10.03</span>
+                </div>
+                <p>熟悉了软件界面与核心工具，了解图层与画板的嵌套逻辑。学会了字体配置、图片蒙版设置，以及从社区获取组件库辅助设计。</p>
+            </article>
+
+            <!-- 笔记 6 -->
+            <article class="note-item">
+                <div class="note-header">
+                    <h2>06 《Figma 自动布局与栅格》</h2>
+                    <span class="note-date">2026.10.03</span>
+                </div>
+                <p>重点攻克自动布局（Auto Layout），结合栅格系统搭建了响应式网页骨架。</p>
+            </article>
+
+        </div>
+
+    </main>
+
+    <!-- ========== 页脚 ========== -->
+    <footer class="site-footer">
+        <span>© 2026 LunaTang</span>
+        <a href="https://github.com/" target="_blank">GitHub</a>
+    </footer>
+
+</body>
+</html>
