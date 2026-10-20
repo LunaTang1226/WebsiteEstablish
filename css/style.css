@@ -608,4 +608,15 @@ ul {
     font-size: 14px;
     color: #555;
 }
-                                   
+/* 笔记标题的链接样式 */
+.note-link {
+    text-decoration: none; /* 去掉丑陋的下划线 */
+    color: inherit; /* 颜色继承外面的黑色，保持原样 */
+}
+
+/* 鼠标悬停时的高级小反馈 */
+.note-link:hover h2 {
+    color: #666; /* 稍微变浅一点 */
+    text-decoration: underline; /* 悬停时显示下划线，提示可点击 */
+    transition: all 0.2s ease;
+}                                   
